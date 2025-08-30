@@ -1,19 +1,18 @@
 #!/usr/bin/env node
-'use strict';
 
 const path = require('path');
 
-console.info('[INFO] Installing necessary NPM modules...');
-const cldrDataDir = require('./fetch-npm-modules')();
+const ROOT_DIR = path.normalize(path.join(__dirname, '..'));
+const CLDR_DATA_DIR = path.join(ROOT_DIR, 'node_modules', 'cldr-data', 'main');
 
-console.info('[INFO] Generating Positioning Functions...');
-require('./generate-position-functions')(cldrDataDir, path.join(__dirname, '..', 'data', 'positions.js'));
+console.info('💸 Generating Positioning Functions...');
+require('./generate-position-functions')(CLDR_DATA_DIR, path.join(__dirname, '..', 'data', 'positions.js'));
 
-console.info('[INFO] Generating Number Separator Map...');
-require('./generate-number-separators')(cldrDataDir, path.join(__dirname, '..', 'data', 'separators.js'));
+console.info('💸 Generating Number Separator Map...');
+require('./generate-number-separators')(CLDR_DATA_DIR, path.join(__dirname, '..', 'data', 'separators.js'));
 
-console.info('[INFO] Generating Currency Symbol Map...');
-require('./generate-currency-symbol-map')(cldrDataDir, path.join(__dirname, '..', 'data', 'symbol-map.js'));
+console.info('💸 Generating Currency Symbol Map...');
+require('./generate-currency-symbol-map')(CLDR_DATA_DIR, path.join(__dirname, '..', 'data', 'symbol-map.js'));
 
-console.info('[INFO] Generating Country Information...');
-require('./generate-country-information')(cldrDataDir, path.join(__dirname, '..', 'data', 'country-currency.js'));
+console.info('💸 Generating Country Information...');
+require('./generate-country-information')(CLDR_DATA_DIR, path.join(__dirname, '..', 'data', 'country-currency.js'));

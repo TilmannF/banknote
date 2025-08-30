@@ -13,6 +13,6 @@ indent_style = space
 indent_size = 4
 
 # Override specific settings for npm generated json files to avoid big diffs
-[{package.json, npm-shrinkwrap.json}]
+[{package.json,npm-shrinkwrap.json}]
 indent_style = space
 indent_size = 2

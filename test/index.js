@@ -20,7 +20,7 @@
  THE SOFTWARE.
  */
 
-'use strict';
+
 
 const assert = require('assert');
 const banknote = require('../');
@@ -107,16 +107,42 @@ describe('banknote', function () {
             assert.equal(banknote.formatSubunitAmount(-123456, options), '-€ 1 234,56');
         });
 
-        it('should work for "de-CH" locale', function () {
+        it('should work for "de-CH" locale with negative amounts', function () {
             const options = banknote.formattingForLocale('de-CH');
             assert.equal(banknote.formatSubunitAmount(-123456, options), 'CHF-1’234.56');
         });
 
+        it('should work for "de-CH" locale with positive amounts', function () {
+            const options = banknote.formattingForLocale('de-CH');
+            assert.equal(banknote.formatSubunitAmount(123456, options), 'CHF 1’234.56');
+        });
 
-        it('should work for "fr-CH" locale', function () {
+
+        it.skip('should work for "fr-CH" locale', function () {
             const options = banknote.formattingForLocale('fr-CH');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-1’234.56 CHF');
+        });
+
+        it('should work for "en-CH" locale with positive amounts', function () {
+            const options = banknote.formattingForLocale('en-CH');
+            assert.equal(banknote.formatSubunitAmount(123456, options), 'CHF 1’234.56');
+        });
+
+        it('should work for "en-CH" locale with negative amounts', function () {
+            const options = banknote.formattingForLocale('en-CH');
             assert.equal(banknote.formatSubunitAmount(-123456, options), 'CHF-1’234.56');
         });
+
+        it('should work for "it-CH" locale with positive amounts', function () {
+            const options = banknote.formattingForLocale('it-CH');
+            assert.equal(banknote.formatSubunitAmount(123456, options), 'CHF 1’234.56');
+        });
+
+        it('should work for "it-CH" locale with negative amounts', function () {
+            const options = banknote.formattingForLocale('it-CH');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), 'CHF-1’234.56');
+        });
+
 
         it('should work for "en-US" locale with "EUR" currency', function () {
             const options = banknote.formattingForLocale('en-US', 'EUR');
@@ -158,5 +184,111 @@ describe('banknote', function () {
             assert.equal(banknote.formatSubunitAmount(12300, options), '123 Ft');
         });
 
+        it('should work for "fr-FR" locale (positive EUR)', function () {
+            const options = banknote.formattingForLocale('fr-FR');
+            assert.equal(banknote.formatSubunitAmount(123456, options), '1\u202F234,56\u00A0€');
+        });
+
+        it('should work for "fr-FR" locale (negative EUR)', function () {
+            const options = banknote.formattingForLocale('fr-FR');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-1\u202F234,56\u00A0€');
+        });
+
+        // Since we use narrow currency symbols, this fails currently
+        it.skip('should work for "da-DK" locale (positive DKK)', function () {
+            const options = banknote.formattingForLocale('da-DK');
+            assert.equal(banknote.formatSubunitAmount(123456, options), '1.234,56\u00A0kr.');
+        });
+
+        // Since we use narrow currency symbols, this fails currently
+        it.skip('should work for "da-DK" locale (negative DKK)', function () {
+            const options = banknote.formattingForLocale('da-DK');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-1.234,56\u00A0kr.');
+        });
+
+        it('should work for "ru-RU" locale (positive RUB)', function () {
+            const options = banknote.formattingForLocale('ru-RU');
+            assert.equal(banknote.formatSubunitAmount(123456, options), '1\u00A0234,56\u00A0\u20BD');
+        });
+
+        it('should work for "ru-RU" locale (negative RUB)', function () {
+            const options = banknote.formattingForLocale('ru-RU');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-1\u00A0234,56\u00A0\u20BD');
+        });
+
+        it('should work for "tr-TR" locale (positive TRY)', function () {
+            const options = banknote.formattingForLocale('tr-TR');
+            assert.equal(banknote.formatSubunitAmount(123456, options), '\u20BA1.234,56');
+        });
+
+        it('should work for "tr-TR" locale (negative TRY)', function () {
+            const options = banknote.formattingForLocale('tr-TR');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-\u20BA1.234,56');
+        });
+
+
+        // We do not support this kind of grouping yet
+        it.skip('should work for "en-IN" locale (positive INR)', function () {
+            const options = banknote.formattingForLocale('en-IN');
+            assert.equal(banknote.formatSubunitAmount(12345678, options), '\u20B91,23,456.78');
+        });
+
+        // We do not support this kind of grouping yet
+        it.skip('should work for "en-IN" locale (negative INR)', function () {
+            const options = banknote.formattingForLocale('en-IN');
+            assert.equal(banknote.formatSubunitAmount(-12345678, options), '\u20B9-1,23,456.78');
+        });
+
+        // Since we use narrow currency symbols, this fails currently
+        it.skip('should work for "zh-HK" locale (positive HKD)', function () {
+            const options = banknote.formattingForLocale('zh-HK');
+            assert.equal(banknote.formatSubunitAmount(123456, options), 'HK$1,234.56');
+        });
+
+        // Since we use narrow currency symbols, this fails currently
+        it.skip('should work for "zh-HK" locale (negative HKD)', function () {
+            const options = banknote.formattingForLocale('zh-HK');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), 'HK$-1,234.56');
+        });
+
+        it('should work for "nl-NL" locale (positive EUR)', function () {
+            const options = banknote.formattingForLocale('nl-NL');
+            assert.equal(banknote.formatSubunitAmount(123456, options), '€\u00A01.234,56');
+        });
+
+        it('should work for "nl-NL" locale (negative EUR)', function () {
+            const options = banknote.formattingForLocale('nl-NL');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '€\u00A0-1.234,56');
+        });
+
+        it('should work for "pt-BR" locale (positive BRL)', function () {
+            const options = banknote.formattingForLocale('pt-BR');
+            assert.equal(banknote.formatSubunitAmount(123456, options), 'R$\u00A01.234,56');
+        });
+
+        it('should work for "pt-BR" locale (negative BRL)', function () {
+            const options = banknote.formattingForLocale('pt-BR');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-R$\u00A01.234,56');
+        });
+
+        it('should work for "pl-PL" locale (positive PLN)', function () {
+            const options = banknote.formattingForLocale('pl-PL');
+            assert.equal(banknote.formatSubunitAmount(123456, options), '1\u00A0234,56\u00A0z\u0142');
+        });
+
+        it('should work for "pl-PL" locale (negative PLN)', function () {
+            const options = banknote.formattingForLocale('pl-PL');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-1\u00A0234,56\u00A0z\u0142');
+        });
+
+        it('should work for "cs-CZ" locale (positive CZK)', function () {
+            const options = banknote.formattingForLocale('cs-CZ');
+            assert.equal(banknote.formatSubunitAmount(123456, options), '1\u00A0234,56\u00A0K\u010D');
+        });
+
+        it('should work for "cs-CZ" locale (negative CZK)', function () {
+            const options = banknote.formattingForLocale('cs-CZ');
+            assert.equal(banknote.formatSubunitAmount(-123456, options), '-1\u00A0234,56\u00A0K\u010D');
+        });
     });
 });

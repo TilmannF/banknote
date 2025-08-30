@@ -10,7 +10,7 @@ Banknote is a small, easy-to-use JavaScript library that provides a simple way t
 
 ## Features
 
-Banknote addresses a common problem faced by anyone (for example, an e-commerce company) who has to update and format prices on the frontend. It is different from similar projects in that it follows Unicode CLDR formatting standards, not an ad hoc data solution. It also:  
+Banknote addresses a common problem faced by anyone (for example, an e-commerce company) who has to update and format prices on the frontend. It is different from similar projects in that it follows Unicode CLDR formatting standards, not an ad hoc data solution. It also:
 - is customizable — you can use emoticons, preferred symbols, etc.
 - allows you to override its default settings — for example, if you want to apply US formatting to amounts in Chinese yen
 
@@ -175,7 +175,7 @@ We welcome contributions to this project. Please keep in mind that we want to av
 
 ## License
 
-Copyright (c) 2015-2017 Zalando SE
+Copyright (c) 2015-2025 Zalando SE
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

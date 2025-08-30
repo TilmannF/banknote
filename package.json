@@ -1,11 +1,12 @@
 {
   "name": "banknote",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Module for handling currency formatting.",
   "main": "index.js",
   "scripts": {
     "update-cldr-data": "node update",
     "lint": "eslint .",
+    "fix": "eslint . --fix",
     "test": "mocha test",
     "benchmark": "node benchmark",
     "tdd": "mocha --watch test"
@@ -21,7 +22,10 @@
   "license": "MIT",
   "devDependencies": {
     "benchmark": "^2.1.4",
-    "eslint": "^6.8.0",
-    "mocha": "^7.1.1"
+    "cldr-core": "^47.0.0",
+    "cldr-localenames-full": "^47.0.0",
+    "cldr-numbers-full": "^47.0.0",
+    "eslint": "^9.33.0",
+    "mocha": "^11.7.1"
   }
 }

@@ -20,8 +20,6 @@
  THE SOFTWARE.
  */
 
-'use strict';
-
 const countryCurrencyMap = require('./data/country-currency');
 const currencySymbolMap = require('./data/symbol-map');
 const localeSeparatorsMap = require('./data/separators');
@@ -86,7 +84,7 @@ function getCurrencyFromRegion(region) {
  * provide an explicit currency code.
  * @throws Error thrown if the lookup of formatting rules has failed.
  * @param {string} locale a BCP47 locale string
- * @param {string=} currencyCode explicit currency code for for the currency symbol lookup
+ * @param {string=} currencyCode explicit currency code for the currency symbol lookup
  * @returns {BanknoteFormatting}
  */
 exports.formattingForLocale = function (locale, currencyCode) {
