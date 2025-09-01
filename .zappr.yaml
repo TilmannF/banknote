@@ -1,1 +1,10 @@
-X-Zalando-Type: code
+# for github.com
+approvals:
+    minimum: 2
+    from:
+        orgs:
+            - zalando
+        collaborators: true
+
+X-Zalando-Team: "pathfinder"
+X-Zalando-Type: "code"
