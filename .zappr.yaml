@@ -6,5 +6,17 @@ approvals:
             - zalando
         collaborators: true
 
+# mandatory pull request labels
+pull-request:
+    labels:
+        additional: true
+        oneOf:
+            - architectural
+            - major
+            - minor
+            - bugfix
+            - documentation
+            - dependencies
+
 X-Zalando-Team: "pathfinder"
 X-Zalando-Type: "code"
